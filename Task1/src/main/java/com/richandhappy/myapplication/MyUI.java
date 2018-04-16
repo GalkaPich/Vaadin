@@ -51,6 +51,17 @@ public class MyUI<T> extends UI {
 
 		// hotelGrid.setWidth(100, Unit.PERCENTAGE);
 
+		filterName.addFocusListener(e -> {
+			deleteHotel.setEnabled(false);
+			form.setVisible(false);
+		});
+		
+		filterAddresss.addFocusListener(e -> {
+			deleteHotel.setEnabled(false);
+			form.setVisible(false);
+		});
+		
+		
 		hotelGrid.asSingleSelect().addValueChangeListener(e -> {
 			if (e.getValue() != null) {
 				deleteHotel.setEnabled(true);
@@ -75,12 +86,11 @@ public class MyUI<T> extends UI {
 
 		updateList();
 
-		addHotel.addClickListener(e -> form.setHotel(new Hotel()));
+		addHotel.addClickListener(e -> form.setHotel(new Hotel()));	
 	}
 
 	public void updateList() {
 		List<Hotel> hotelList = hotelService.findAll(filterName.getValue(), filterAddresss.getValue());
-
 		hotelGrid.setItems(hotelList);
 	}
 

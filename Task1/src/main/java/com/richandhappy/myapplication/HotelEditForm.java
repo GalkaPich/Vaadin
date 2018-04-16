@@ -37,8 +37,16 @@ public class HotelEditForm extends FormLayout {
 
 		category.setItems(HotelCategry.values());
 
-		save.addClickListener(e -> save());
-		close.addClickListener(e -> setVisible(false));
+		save.addClickListener(e -> {
+			save();
+			hotelUi.deleteHotel.setEnabled(false);
+		});
+
+		close.addClickListener(e -> {
+			hotelUi.updateList();
+			setVisible(false);
+			hotelUi.deleteHotel.setEnabled(false);
+		});
 	}
 
 	private void save() {
